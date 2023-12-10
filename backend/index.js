@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
+import cors from "cors";
 import reservationRoutes from "./routes/reservationRoutes.js";
 
 const PORT = process.env.PORT || 3000;
@@ -9,6 +10,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 const app = express();
 app.use(express.json());
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   return res.status(200).send("Welcome to little lemon");

@@ -1,14 +1,23 @@
 import { useState } from "react";
-
 import "./App.css";
 import { Button, Container } from "react-bootstrap";
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./pages/Home";
+import CreateReservations from "./pages/CreateReservations";
+import ShowReservation from "./pages/ShowReservation";
+import EditReservation from "./pages/EditReservation";
+import DeleteReservation from "./pages/DeleteReservation";
 
 function App() {
   return (
-    <Container className="mt-4">
-      <h1>Welcome to My React App with React Bootstrap!</h1>
-      <Button variant="primary">React Bootstrap Button</Button>
-    </Container>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/reservation/create" element={<CreateReservations />} />
+      <Route path="/reservation/details/:id" element={<ShowReservation />} />
+      <Route path="/reservation/edit/:id" element={<EditReservation />} />
+      <Route path="/reservation/delete/:id" element={<DeleteReservation />} />
+    </Routes>
   );
 }
 
