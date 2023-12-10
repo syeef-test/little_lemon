@@ -10,20 +10,25 @@ router.post("/", async (req, res) => {
       !req.body.numberofseats ||
       !req.body.reservationdate
     ) {
-      res.status(400).send({ message: "Send all required fields" });
+      return res.status(400).send({ message: "Send all required fields" });
     }
+
     const newReservation = {
       username: req.body.username,
       numberofseats: req.body.numberofseats,
       reservationdate: req.body.reservationdate,
-      reservationdoneon: req.body.reservationdoneon,
     };
 
     const reservation = await Reservation.create(newReservation);
+
+    if (!reservation) {
+      return res.status(500).send({ message: "Failed to create reservation" });
+    }
+
     return res.status(200).send(reservation);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send({ message: error.message });
+    return res.status(500).send({ message: error.message });
   }
 });
 
