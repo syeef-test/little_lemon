@@ -27,7 +27,7 @@ function Home() {
       Home
       <div>
         <h1>Reservation List</h1>
-        <Link to="/reservation/create"></Link>
+        <Link to="/reservation/create">Add</Link>
       </div>
       {loading ? (
         <Spinner />
