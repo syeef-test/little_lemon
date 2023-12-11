@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function CreateReservations() {
   const [username, setUsername] = useState("");
-  const [numberofseats, setNumberofseats] = useState("");
+  const [numberofseats, setNumberofseats] = useState(0);
   const [reservationdate, setReservationDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -62,15 +62,17 @@ function CreateReservations() {
           />
           <label>Number of seats:</label>
           <input
-            type="text"
+            type="number"
             value={numberofseats}
-            onChange={(e) => setNumberofseats(e.target.value)}
+            onChange={(e) => setNumberofseats(parseInt(e.target.value))}
           />
           <label>Date:</label>
           <input
             type="date"
-            value={reservationdate}
-            onChange={(e) => setReservationDate(e.target.value)}
+            value={
+              reservationdate ? reservationdate.toISOString().split("T")[0] : ""
+            }
+            onChange={(e) => setReservationDate(new Date(e.target.value))}
           />
         </div>
         <div>
